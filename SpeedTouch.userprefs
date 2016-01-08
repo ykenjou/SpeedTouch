@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameModeController.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="82" Column="41" />
-      <File FileName="Assets/Scripts/CircleController.cs" Line="46" Column="36" />
-      <File FileName="Assets/Scripts/CircleCreateController.cs" Line="40" Column="35" />
-      <File FileName="Assets/Scripts/BtnClickController.cs" Line="23" Column="36" />
-      <File FileName="Assets/Scripts/CicleScoreTextController.cs" Line="11" Column="22" />
+      <File FileName="Assets/Scripts/GameModeController.cs" Line="51" Column="27" />
+      <File FileName="Assets/Scripts/ParticleController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/BtnClickController.cs" Line="32" Column="33" />
+      <File FileName="Assets/Scripts/CircleController.cs" Line="31" Column="3" />
+      <File FileName="Assets/Scripts/CircleCreateController.cs" Line="97" Column="1" />
+      <File FileName="Assets/Scripts/CicleScoreTextController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="93" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

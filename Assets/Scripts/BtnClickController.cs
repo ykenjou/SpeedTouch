@@ -4,6 +4,7 @@ using System.Collections;
 public class BtnClickController : MonoBehaviour {
 
 	GameManager gameManager;
+	public GameObject gameModePanel;
 
 	void Awake(){
 		gameManager = GameManager.GetController();
@@ -20,10 +21,14 @@ public class BtnClickController : MonoBehaviour {
 	}
 
 	public void ClickStartBtn(){
-		gameManager.gameStartBool = true;
+		gameManager.DoGameStartCoroutine();
 	}
 
-	public void RestartBtn(){
+	public void ClickRestartBtn(){
 		gameManager.GameReset();
+	}
+
+	public void ClickSelectBtn(){
+		gameModePanel.SetActive(true);
 	}
 }
