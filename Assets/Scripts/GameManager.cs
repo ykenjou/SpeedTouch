@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOverView;
 	public GameObject gameClearView;
 	public GameObject startBtn;
+	public GameObject headerPanel;
 	GameModeController gameModeController;
 
 	void Awake(){
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		maxCircleCount = 50;
+		maxCircleCount = 30;
 		GameReset();
 		Application.targetFrameRate = 60;
 	}
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour {
 			if(gameModeController.gameMode == "stream"){
 				gameTime += Time.deltaTime;
 				timeText.text = gameTime.ToString("f1");
+			} else if(gameModeController.gameMode == "free"){
+				
 			} else {
 				circleInterval += Time.deltaTime;
 				if(circleInterval > circleIntervalD){
@@ -145,9 +148,15 @@ public class GameManager : MonoBehaviour {
 		if(gameModeController.gameMode == "stream"){
 			timeText.gameObject.SetActive(true);
 			scoreText.gameObject.SetActive(false);
+			headerPanel.SetActive(true);
+			gameModeController.footerPanel.SetActive(false);
+		} else if(gameModeController.gameMode == "free"){
+			headerPanel.SetActive(false);
 		} else {
 			timeText.gameObject.SetActive(false);
 			scoreText.gameObject.SetActive(true);
+			headerPanel.SetActive(true);
+			gameModeController.footerPanel.SetActive(false);
 		}
 	}
 
@@ -178,6 +187,10 @@ public class GameManager : MonoBehaviour {
 		if(gameModeController.gameMode == "stream"){
 			circleCreateController.SetStreamCircle();
 		}
+		/*
+		if(gameModeController.gameMode == "free"){
+			headerPanel.SetActive(false);
+		}*/
 	}
 
 	/*

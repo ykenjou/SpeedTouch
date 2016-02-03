@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\CicleScoreTextController.cs" />
      <Compile Include="Assets\Scripts\CircleController.cs" />
      <Compile Include="Assets\Scripts\CircleCreateController.cs" />
+     <Compile Include="Assets\Scripts\FreeModeController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameModeController.cs" />
      <Compile Include="Assets\Scripts\ParticleController.cs" />

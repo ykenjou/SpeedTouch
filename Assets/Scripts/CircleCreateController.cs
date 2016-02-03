@@ -12,13 +12,27 @@ public class CircleCreateController : MonoBehaviour {
 	GameManager gameManager;
 	GameModeController gameModeController;
 
-	public RectTransform circle1Prefab;
+	public RectTransform circleYellowPrefab;
+	public RectTransform circleWaterPrefab;
+	public RectTransform circleRedPrefab;
+	public RectTransform circleWhitePrefab;
+	public RectTransform circleLightGreenPrefab;
+	private RectTransform circleContainer;
+
 	private RectTransform circle1;
 	public RectTransform circleScoreTextPrefab;
-	public RectTransform particlePrefab;
 
 	public RectTransform streamCirclePrefab;
 	private RectTransform streamCircle;
+
+
+	public RectTransform particleYellowPrefab;
+	public RectTransform particleWaterPrefab;
+	public RectTransform particleRedPrefab;
+	public RectTransform particleWhitePrefab;
+	public RectTransform particleLightGreenPrefab;
+
+	public RectTransform particleContainer;
 
 	public Transform gameCanvas;
 
@@ -31,6 +45,8 @@ public class CircleCreateController : MonoBehaviour {
 	List<int> PosYList;
 	List<int> posXList;
 
+	int selectCircle;
+	int preSelectPrefab = 4;
 
 	void Awake(){
 		gameManager = GameManager.GetController();
@@ -51,12 +67,45 @@ public class CircleCreateController : MonoBehaviour {
 
 	}
 
+	void SelectCircle(){
+		while(true){
+			selectCircle = Random.Range(0,5);
+			if(selectCircle != preSelectPrefab){
+				break;
+			}
+		}
+		switch(selectCircle){
+		case 0:
+			circleContainer = circleYellowPrefab;
+			particleContainer = particleYellowPrefab;
+			break;
+		case 1:
+			circleContainer = circleWaterPrefab;
+			particleContainer = particleWaterPrefab;
+			break;
+		case 2:
+			circleContainer = circleRedPrefab;
+			particleContainer = particleRedPrefab;
+			break;
+		case 3:
+			circleContainer = circleWhitePrefab;
+			particleContainer = particleWhitePrefab;
+			break;
+		case 4:
+			circleContainer = circleLightGreenPrefab;
+			particleContainer = particleLightGreenPrefab;
+			break;
+		}
+		preSelectPrefab = selectCircle;
+	}
+
 	public void SetCircle(){
-		circle1 = GameObject.Instantiate(circle1Prefab) as RectTransform;
+		SelectCircle();
+		circle1 = GameObject.Instantiate(circleContainer) as RectTransform;
 		circle1.SetParent(gameCanvas,false);
 
 		if(posXList.Count == 0){
-			randomY = Random.Range(-200,-1100);
+			randomY = Random.Range(-250,-1100);
 			randomX = Random.Range(200,600);
 		} else {
 			switch(gameModeController.gameMode){
@@ -73,18 +122,18 @@ public class CircleCreateController : MonoBehaviour {
 				marginX = 100;
 				break;
 			case "fourth":
-				marginY = 140;
+				marginY = 135;
 				marginX = 70;
 				break;
 			case "fifth":
-				marginY = 110;
+				marginY = 105;
 				marginX = 50;
 				break;
 			}
 
 			bool loopYBool = false;
 			while(true){
-				randomY = Random.Range(-200,-1100);
+				randomY = Random.Range(-250,-1100);
 				for(int i = 0; i < PosYList.Count;i++){
 					if(PosYList[i] + marginY < randomY || PosYList[i] - marginY > randomY){
 						loopYBool = true;
@@ -127,7 +176,7 @@ public class CircleCreateController : MonoBehaviour {
 		streamCircle = GameObject.Instantiate(streamCirclePrefab) as RectTransform;
 		streamCircle.SetParent(gameCanvas,false);
 
-		randomY = Random.Range(-200,-1100);
+		randomY = Random.Range(-250,-1100);
 		randomX = Random.Range(200,600);
 		Vector2 streamCirclePos = streamCircle.anchoredPosition;
 		streamCirclePos.y = randomY;

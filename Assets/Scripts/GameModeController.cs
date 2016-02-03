@@ -10,6 +10,7 @@ public class GameModeController : MonoBehaviour {
 	public string gameMode;
 	public string gameType;
 	public GameObject gameModePanel;
+	public GameObject footerPanel;
 
 	GameManager gameManager;
 
@@ -52,6 +53,9 @@ public class GameModeController : MonoBehaviour {
 		gameMode = mode;
 		SetCircleIntervalD();
 		gameModePanel.SetActive(false);
+		if(mode == "free"){
+			footerPanel.SetActive(true);
+		}
 		gameManager.GameReset();
 	}
 }

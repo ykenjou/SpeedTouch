@@ -31,7 +31,7 @@ public class StreamCircleController : MonoBehaviour {
 	public void ClickCircle(){
 		RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
 
-		particleForm = GameObject.Instantiate(circleCreateController.particlePrefab);
+		particleForm = GameObject.Instantiate(circleCreateController.particleContainer);
 		particleForm.SetParent(circleCreateController.gameCanvas,false);
 		Vector2 particlePos = particleForm.anchoredPosition;
 		particlePos.y = rectTransform.anchoredPosition.y;

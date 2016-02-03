@@ -11,12 +11,14 @@ public class CircleController : MonoBehaviour {
 	RectTransform circleScoreTextForm;
 	Text circleScoreText;
 	RectTransform particleForm;
+	public RectTransform selectedParticle;
 	float alphaF;
 	Image circleImage;
 
 	void Awake(){
 		gameManager = GameManager.GetController();
 		circleCreateController = CircleCreateController.GetController();
+		selectedParticle = circleCreateController.particleContainer;
 	}
 
 	// Use this for initialization
@@ -63,7 +65,7 @@ public class CircleController : MonoBehaviour {
 		circleScoreTextForm.anchoredPosition = circleScoreTextPos;
 		*/
 
-		particleForm = GameObject.Instantiate(circleCreateController.particlePrefab);
+		particleForm = GameObject.Instantiate(selectedParticle);
 		particleForm.SetParent(circleCreateController.gameCanvas,false);
 		Vector2 particlePos = particleForm.anchoredPosition;
 		particlePos.y = rectTransform.anchoredPosition.y;

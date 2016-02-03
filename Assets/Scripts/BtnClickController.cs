@@ -31,4 +31,9 @@ public class BtnClickController : MonoBehaviour {
 	public void ClickSelectBtn(){
 		gameModePanel.SetActive(true);
 	}
+
+	public void ClickEndBtn(){
+		gameManager.gameStartBool = false;
+		gameModePanel.SetActive(true);
+	}
 }
