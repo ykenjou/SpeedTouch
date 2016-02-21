@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameModeController.cs" />
      <Compile Include="Assets\Scripts\ParticleController.cs" />
+     <Compile Include="Assets\Scripts\SoundCotroller.cs" />
      <Compile Include="Assets\Scripts\StreamCircleController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity5.3/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

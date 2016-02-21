@@ -31,10 +31,11 @@ public class CircleCreateController : MonoBehaviour {
 	public RectTransform particleRedPrefab;
 	public RectTransform particleWhitePrefab;
 	public RectTransform particleLightGreenPrefab;
-
+	[System.NonSerialized]
 	public RectTransform particleContainer;
 
 	public Transform gameCanvas;
+	public RectTransform gameCanvasForm;
 
 	public int randomY;
 	public int randomX;
@@ -46,7 +47,10 @@ public class CircleCreateController : MonoBehaviour {
 	List<int> posXList;
 
 	int selectCircle;
-	int preSelectPrefab = 4;
+	//int preSelectPrefab = 4;
+
+	Vector2 gameCanvasSize;
+	int gameCanvasWidth;
 
 	void Awake(){
 		gameManager = GameManager.GetController();
@@ -59,7 +63,8 @@ public class CircleCreateController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		gameCanvasSize = gameCanvasForm.sizeDelta;
+		gameCanvasWidth = (int)gameCanvasSize.x;
 	}
 
 	// Update is called once per frame
@@ -68,6 +73,7 @@ public class CircleCreateController : MonoBehaviour {
 	}
 
 	void SelectCircle(){
+		/*
 		while(true){
 			selectCircle = Random.Range(0,5);
 			if(selectCircle != preSelectPrefab){
@@ -96,7 +102,11 @@ public class CircleCreateController : MonoBehaviour {
 			particleContainer = particleLightGreenPrefab;
 			break;
 		}
+
 		preSelectPrefab = selectCircle;
+		*/
+		circleContainer = circleYellowPrefab;
+		particleContainer = particleYellowPrefab;
 	}
 
 	public void SetCircle(){
@@ -105,8 +115,11 @@ public class CircleCreateController : MonoBehaviour {
 		circle1.SetParent(gameCanvas,false);
 
 		if(posXList.Count == 0){
-			randomY = Random.Range(-250,-1100);
-			randomX = Random.Range(200,600);
+			//randomY = Random.Range(-400,-1100);
+			//randomX = Random.Range(200,600);
+
+			randomY = Random.Range(-300,-1100);
+			randomX = Random.Range(200,gameCanvasWidth - 200);
 		} else {
 			switch(gameModeController.gameMode){
 			case "single":
@@ -115,25 +128,25 @@ public class CircleCreateController : MonoBehaviour {
 				break;
 			case "double":
 				marginY = 150;
-				marginX = 150;
+				marginX = (gameCanvasWidth-300) / 5;
 				break;
 			case "triple":
 				marginY = 150;
-				marginX = 100;
+				marginX = (gameCanvasWidth-300) / 6;
 				break;
 			case "fourth":
 				marginY = 135;
-				marginX = 70;
+				marginX = (gameCanvasWidth-300) / 7;
 				break;
 			case "fifth":
 				marginY = 105;
-				marginX = 50;
+				marginX = (gameCanvasWidth-300) / 8;
 				break;
 			}
 
 			bool loopYBool = false;
 			while(true){
-				randomY = Random.Range(-250,-1100);
+				randomY = Random.Range(-200,-1100);
 				for(int i = 0; i < PosYList.Count;i++){
 					if(PosYList[i] + marginY < randomY || PosYList[i] - marginY > randomY){
 						loopYBool = true;
@@ -149,7 +162,7 @@ public class CircleCreateController : MonoBehaviour {
 
 			bool loopXBool = false;
 			while(true){
-				randomX = Random.Range(150,600);
+				randomX = Random.Range(150,gameCanvasWidth - 150);
 				for(int i = 0; i < posXList.Count; i++){
 					if(posXList[i] - marginX > randomX || posXList[i] + marginX < randomX){
 						loopXBool = true;
@@ -173,11 +186,12 @@ public class CircleCreateController : MonoBehaviour {
 	}
 
 	public void SetStreamCircle(){
+		particleContainer = particleYellowPrefab;
 		streamCircle = GameObject.Instantiate(streamCirclePrefab) as RectTransform;
 		streamCircle.SetParent(gameCanvas,false);
 
 		randomY = Random.Range(-250,-1100);
-		randomX = Random.Range(200,600);
+		randomX = Random.Range(200,gameCanvasWidth - 200);
 		Vector2 streamCirclePos = streamCircle.anchoredPosition;
 		streamCirclePos.y = randomY;
 		streamCirclePos.x = randomX;

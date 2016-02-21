@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		maxCircleCount = 30;
+		maxCircleCount = 20;
 		GameReset();
 		Application.targetFrameRate = 60;
 	}
@@ -118,10 +118,12 @@ public class GameManager : MonoBehaviour {
 			oldCircleCount = nowCircleCount;
 		}
 
+		/*
 		if(life <= 0 && gameOverBool == false){
 			gameOverBool = true;
 			StartCoroutine("GameOverStream");
 		}
+		*/
 
 		if(gameClearBool){
 			StartCoroutine("GameClearStream");

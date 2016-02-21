@@ -31,7 +31,7 @@ public class GameModeController : MonoBehaviour {
 	public void SetCircleIntervalD(){
 		switch(gameMode){
 		case "single":
-			gameManager.circleIntervalD = 1;
+			gameManager.circleIntervalD = 1.25;
 			break;
 		case "double":
 			gameManager.circleIntervalD = 1.6;

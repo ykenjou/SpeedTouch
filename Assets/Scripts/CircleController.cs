@@ -8,6 +8,8 @@ public class CircleController : MonoBehaviour {
 
 	GameManager gameManager;
 	CircleCreateController circleCreateController;
+	SoundCotroller soundCotroller;
+
 	RectTransform circleScoreTextForm;
 	Text circleScoreText;
 	RectTransform particleForm;
@@ -18,6 +20,7 @@ public class CircleController : MonoBehaviour {
 	void Awake(){
 		gameManager = GameManager.GetController();
 		circleCreateController = CircleCreateController.GetController();
+		soundCotroller = SoundCotroller.GetController();
 		selectedParticle = circleCreateController.particleContainer;
 	}
 
@@ -54,16 +57,18 @@ public class CircleController : MonoBehaviour {
 
 		RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
 
-		/*
+		soundCotroller.touchLightSoundPlay();
+
+
 		circleScoreTextForm = GameObject.Instantiate(circleCreateController.circleScoreTextPrefab) as RectTransform;
 		circleScoreText = circleScoreTextForm.gameObject.GetComponentInChildren<Text>();
 		circleScoreText.text = "+" + addScoreInt.ToString();
 		circleScoreTextForm.SetParent(circleCreateController.gameCanvas,false);
 		Vector2 circleScoreTextPos = circleScoreTextForm.anchoredPosition;
-		circleScoreTextPos.y = rectTransform.anchoredPosition.y + 200;
-		circleScoreTextPos.x = rectTransform.anchoredPosition.x;
+		float randomY = Random.Range(0,10f);
+		circleScoreTextPos.y = circleScoreTextForm.anchoredPosition.y + randomY;
+		circleScoreTextPos.x = circleScoreTextForm.anchoredPosition.x;
 		circleScoreTextForm.anchoredPosition = circleScoreTextPos;
-		*/
 
 		particleForm = GameObject.Instantiate(selectedParticle);
 		particleForm.SetParent(circleCreateController.gameCanvas,false);
