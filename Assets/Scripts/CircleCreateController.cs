@@ -29,8 +29,8 @@ public class CircleCreateController : MonoBehaviour {
 	public RectTransform particleYellowPrefab;
 	public RectTransform particleWaterPrefab;
 	public RectTransform particleRedPrefab;
-	public RectTransform particleWhitePrefab;
-	public RectTransform particleLightGreenPrefab;
+	public RectTransform particlePinkPrefab;
+	public RectTransform particleOrangePrefab;
 	[System.NonSerialized]
 	public RectTransform particleContainer;
 
@@ -47,7 +47,7 @@ public class CircleCreateController : MonoBehaviour {
 	List<int> posXList;
 
 	int selectCircle;
-	//int preSelectPrefab = 4;
+	int preSelectPrefab = 4;
 
 	Vector2 gameCanvasSize;
 	int gameCanvasWidth;
@@ -73,7 +73,7 @@ public class CircleCreateController : MonoBehaviour {
 	}
 
 	void SelectCircle(){
-		/*
+		
 		while(true){
 			selectCircle = Random.Range(0,5);
 			if(selectCircle != preSelectPrefab){
@@ -95,18 +95,19 @@ public class CircleCreateController : MonoBehaviour {
 			break;
 		case 3:
 			circleContainer = circleWhitePrefab;
-			particleContainer = particleWhitePrefab;
+			particleContainer = particlePinkPrefab;
 			break;
 		case 4:
 			circleContainer = circleLightGreenPrefab;
-			particleContainer = particleLightGreenPrefab;
+			particleContainer = particleOrangePrefab;
 			break;
 		}
 
 		preSelectPrefab = selectCircle;
-		*/
+		/*
 		circleContainer = circleYellowPrefab;
 		particleContainer = particleYellowPrefab;
+		*/
 	}
 
 	public void SetCircle(){

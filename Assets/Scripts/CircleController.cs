@@ -17,6 +17,8 @@ public class CircleController : MonoBehaviour {
 	float alphaF;
 	Image circleImage;
 
+	GameObject[] scoreTexts;
+
 	void Awake(){
 		gameManager = GameManager.GetController();
 		circleCreateController = CircleCreateController.GetController();
@@ -64,8 +66,10 @@ public class CircleController : MonoBehaviour {
 		circleScoreText = circleScoreTextForm.gameObject.GetComponentInChildren<Text>();
 		circleScoreText.text = "+" + addScoreInt.ToString();
 		circleScoreTextForm.SetParent(circleCreateController.gameCanvas,false);
+
+		scoreTexts = GameObject.FindGameObjectsWithTag("CircleScoreText");
 		Vector2 circleScoreTextPos = circleScoreTextForm.anchoredPosition;
-		float randomY = Random.Range(0,10f);
+		float randomY = Random.Range(0,scoreTexts.Length * 60f);
 		circleScoreTextPos.y = circleScoreTextForm.anchoredPosition.y + randomY;
 		circleScoreTextPos.x = circleScoreTextForm.anchoredPosition.x;
 		circleScoreTextForm.anchoredPosition = circleScoreTextPos;

@@ -34,12 +34,21 @@ public class GameManager : MonoBehaviour {
 	public Text lifeText;
 	public Text countText;
 	public Text timeText;
+	public Text clearScoreText;
+	public Text bestText;
+	public Text scoreTitleText;
+	public Text bestTitleText;
+	public Text newRecordText;
+
 	public GameObject goText;
 	public GameObject readyText;
 	public GameObject gameOverView;
 	public GameObject gameClearView;
 	public GameObject startBtn;
 	public GameObject headerPanel;
+	public GameObject clearSelectBtn;
+	public GameObject restartBtn;
+
 	GameModeController gameModeController;
 
 	void Awake(){
@@ -130,6 +139,16 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	void OnApplicationQuit(){
+		PlayerPrefs.Save();
+	}
+
+	void OnApplicationPause(bool pauseStatus){
+		if(pauseStatus){
+			PlayerPrefs.Save();
+		}
+	}
+
 	public void GameReset(){
 		gameStartBool = false;
 		gameOverBool = false;
@@ -144,6 +163,13 @@ public class GameManager : MonoBehaviour {
 		countText.text = nowCircleCount.ToString() + "/" + maxCircleCount.ToString();
 		gameOverView.SetActive(false);
 		gameClearView.SetActive(false);
+		scoreTitleText.gameObject.SetActive(false);
+		clearScoreText.gameObject.SetActive(false);
+		bestText.gameObject.SetActive(false);
+		bestTitleText.gameObject.SetActive(false);
+		clearSelectBtn.SetActive(false);
+		newRecordText.gameObject.SetActive(false);
+		restartBtn.SetActive(false);
 		readyText.SetActive(true);
 		goText.SetActive(false);
 		startBtn.SetActive(true);
@@ -160,6 +186,7 @@ public class GameManager : MonoBehaviour {
 			headerPanel.SetActive(true);
 			gameModeController.footerPanel.SetActive(false);
 		}
+		System.GC.Collect();
 	}
 
 	public void DoGameStartCoroutine(){
@@ -171,6 +198,11 @@ public class GameManager : MonoBehaviour {
 		gameClearBool = false;
 		yield return new WaitForSeconds(2.5f);
 		gameClearView.SetActive(true);
+		yield return new WaitForSeconds(1f);
+		SetClearScore();
+		yield return new WaitForSeconds(1f);
+		clearSelectBtn.SetActive(true);
+		restartBtn.SetActive(true);
 	}
 
 	IEnumerator GameOverStream(){
@@ -193,6 +225,32 @@ public class GameManager : MonoBehaviour {
 		if(gameModeController.gameMode == "free"){
 			headerPanel.SetActive(false);
 		}*/
+	}
+
+	void SetClearScore(){
+		clearScoreText.gameObject.SetActive(true);
+		scoreTitleText.gameObject.SetActive(true);
+		bestText.gameObject.SetActive(true);
+		bestTitleText.gameObject.SetActive(true);
+
+		clearScoreText.text = scoreText.text;
+
+		string keyStr;
+		keyStr = gameModeController.gameMode;
+		if(PlayerPrefs.HasKey(keyStr)){
+			int bestScore = PlayerPrefs.GetInt(keyStr);
+			if(score > bestScore){
+				PlayerPrefs.SetInt(keyStr,score);
+				bestText.text = score.ToString();
+				newRecordText.gameObject.SetActive(true);
+			} else {
+				bestText.text = PlayerPrefs.GetInt(keyStr).ToString();
+			}
+		} else {
+			PlayerPrefs.SetInt(keyStr,score);
+			bestText.text = score.ToString();
+			newRecordText.gameObject.SetActive(true);
+		}
 	}
 
 	/*

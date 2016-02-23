@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameModeController : MonoBehaviour {
@@ -11,11 +12,14 @@ public class GameModeController : MonoBehaviour {
 	public string gameType;
 	public GameObject gameModePanel;
 	public GameObject footerPanel;
+	public Text gameModeText;
 
+	SoundCotroller soundCotroller;
 	GameManager gameManager;
 
 	void Awake(){
 		gameManager = GameManager.GetController();
+		soundCotroller = SoundCotroller.GetController();
 	}
 
 	// Use this for initialization
@@ -53,6 +57,10 @@ public class GameModeController : MonoBehaviour {
 		gameMode = mode;
 		SetCircleIntervalD();
 		gameModePanel.SetActive(false);
+		gameModeText.text = mode;
+
+		soundCotroller.touchBtnSoundPlay();
+
 		if(mode == "free"){
 			footerPanel.SetActive(true);
 		}

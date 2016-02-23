@@ -9,6 +9,7 @@ public class SoundCotroller : MonoBehaviour {
 
 	public AudioSource touchLightSound;
 	public AudioClip fireworks2;
+	public AudioClip touchBtn;
 
 	// Use this for initialization
 	void Start () {
@@ -23,5 +24,10 @@ public class SoundCotroller : MonoBehaviour {
 	public void touchLightSoundPlay(){
 		//touchLightSound.Play();
 		touchLightSound.PlayOneShot(fireworks2);
+	}
+
+	public void touchBtnSoundPlay(){
+		//touchLightSound.Play();
+		touchLightSound.PlayOneShot(touchBtn);
 	}
 }
